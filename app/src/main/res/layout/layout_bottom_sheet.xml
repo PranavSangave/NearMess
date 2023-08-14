@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/bottomsheetcontainer"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="@drawable/bottomsheetback"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="500dp">
+
+
+
+
+
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/horizontal_line"
+            android:src="@drawable/horizontal_line">
+
+
+        </ImageView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:id="@+id/commentRecyclerView"
+            android:layout_marginBottom="100dp"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+
+
+            android:orientation="horizontal"
+            android:background="@drawable/bottomsheetback"
+            >
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="3"
+                android:src="@drawable/testimg"/>
+
+
+            <EditText
+                android:paddingTop="10dp"
+                android:paddingBottom="20dp"
+                android:layout_width="match_parent"
+
+                android:layout_marginStart="20dp"
+                android:background="@drawable/edit_comment_edit_text_background"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="20dp"
+                android:selectAllOnFocus="true"
+                android:hint="Add Comment"
+
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:layout_height="50dp">
+
+            </EditText>
+
+            <ImageView
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:src="@drawable/send_button"/>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

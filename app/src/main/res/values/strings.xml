@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">NearMess</string>
+
+
+    <!--    Sign In -->
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_pass">Forgot your password?</string>
+    <string name="log_in">Log In</string>
+    <string name="login">Login</string>
+    <string name="or">or</string>
+    <string name="continue_google">Continue with google</string>
+    <string name="not_member">Not a member?</string>
+    <string name="signup">Sign Up</string>
+
+    <!--    sign up -->
+    <string name="create">Create</string>
+    <string name="terms_1">I agree with all</string>
+    <string name="terms_2">terms and conditions</string>
+    <string name="already_member">Already a member?</string>
+    <string name="welcome">WELCOME</string>
+
+    <!--    Home -->
+    <string name="all">All</string>
+    <string name="veg">veg</string>
+    <string name="non_veg">non-veg</string>
+    <string name="sort_by">sort by</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="more">More</string>
+
+    <!--    menu -->
+    <string name="todays_menu">Today\'s menu</string>
+    <string name="lunch">lunch</string>
+    <string name="charges">Charges</string>
+    <string name="rating">Rating</string>
+    <string name="comments">Comments</string>
+    <string name="add_comment">Add a comment</string>
+
+    <!--    Profile -->
+    <string name="share">Share</string>
+    <string name="contact_us">Contact us</string>
+    <string name="logout">Log out</string>
+    <string name="favourite">Favourite</string>
+
+    <!--    Registration screen -->
+    <string name="register">Register</string>
+    <string name="mess_name">Mess Name</string>
+    <string name="address">Address</string>
+    <string name="phone_num">Phone number</string>
+    <string name="seating_cap">Seating capacity</string>
+    <string name="capacity">Capacity</string>
+    <string name="services">Services</string>
+    <string name="tiffin">Tiffin</string>
+    <string name="dinning">Dinning</string>
+    <string name="both">Both</string>
+    <string name="menu">Menu</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="morning_timing">Morning timing</string>
+    <string name="evening_timing">Evening timing</string>
+    <string name="time_7am">7:00am</string>
+    <string name="time_11am">11:00am</string>
+    <string name="time_7pm">7:00pm</string>
+    <string name="time_11pm">11:00pm</string>
+    <string name="photo">Photo</string>
+
+    <string name="menu_add_remainder">It\'s Time to add Your Menu</string>
+    <string name="edit_charge">Edit Charges</string>
+    <string name="note">Note</string>
+    <string name="save">Save</string>
+
+
+    <string name="enter_otp">Enter OTP</string>
+    <string name="resend">Resend</string>
+    <string name="verify">verify</string>
+
+    <string name="update_menu">Update Menu</string>
+    <string name="menu_update_remainder">It\'s Time to Update Your Menu</string>
+    <string name="add">Add</string>
+
+    <string name="edit">Edit</string>
+
+    <string name="streak_score">Your Streak Score</string>
+    <string name="know_more_about_streaks">Know more about streaks</string>
+
+
+</resources>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#2a7453"
+    android:layout_gravity="center"
+
+    android:gravity="center"
+    tools:context=".SplashScreen">
+
+
+        <LinearLayout
+            android:layout_width="260dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/splash_screeb_rounds_backgraound2"
+            android:layout_height="260dp">
+
+
+
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:background="@drawable/splash_screeb_rounds_backgraound"
+            android:layout_height="200dp">
+
+
+                <ImageView
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/app_logo"
+                    android:layout_height="match_parent">
+
+                </ImageView>
+
+
+
+
+
+
+
+        </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:background="#f2f2f2">-->
+
+<!--                &lt;!&ndash; Content for the first section goes here &ndash;&gt;'-->
+
+
+<!--               <LinearLayout-->
+
+
+<!--                   android:layout_width="match_parent"-->
+<!--                   android:layout_height="match_parent">-->
+
+<!--                   <ImageView-->
+<!--                       android:layout_marginTop="-100dp"-->
+<!--                       android:layout_marginStart="-100dp"-->
+
+<!--                       android:layout_width="300dp"-->
+<!--                       android:scaleType="centerCrop"-->
+<!--                       android:background="@drawable/splash_screeb_rounds_backgraound"-->
+<!--                       android:layout_height="300dp">-->
+
+<!--                   </ImageView>-->
+
+
+<!--               </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent">-->
+
+
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="1"-->
+<!--                >-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:src="@drawable/app_logo"-->
+<!--                    android:layout_height="match_parent">-->
+<!--                </ImageView>-->
+<!--                &lt;!&ndash; Content for the second section goes here &ndash;&gt;-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="1">-->
+
+
+
+
+
+
+
+
+<!--                <RelativeLayout-->
+
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent">-->
+<!--                    <TextView-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_marginBottom="-100dp"-->
+<!--                        android:layout_marginRight="-100dp"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:background="@drawable/splash_screeb_rounds_backgraound"-->
+<!--                        android:layout_height="300dp">-->
+
+<!--                    </TextView>-->
+<!--                    <TextView-->
+<!--                        android:layout_alignParentBottom="true"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:layout_height="30dp">-->
+
+<!--                    </TextView>-->
+
+
+
+<!--                </RelativeLayout>-->
+
+
+
+<!--                &lt;!&ndash; Content for the third section goes here &ndash;&gt;-->
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+
+
+
+</LinearLayout>
