@@ -2,13 +2,16 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.NearMess" parent="Theme.Material3.DayNight.NoActionBar">
 
-        <item name="colorPrimary">#49A332</item>
+        <item name="colorPrimary">#2A7353</item>
         <item name="colorPrimaryVariant">#49A332</item>
         <item name="colorOnPrimary">#49A332</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">#49A332</item>
         <item name="colorSecondaryVariant">#49A332</item>
         <item name="colorOnSecondary">@color/black</item>
+<!--        <item name="android:statusBarColor">#2A7353</item>-->
+
+
         <!-- Status bar color. -->
 <!--        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>-->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
@@ -59,6 +62,10 @@
 
 
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="SpinnerStyle" parent="Widget.AppCompat.Spinner">
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
 
