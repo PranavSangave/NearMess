@@ -112,7 +112,7 @@ public class Menu extends Activity implements View.OnClickListener {
 
 
 
-            
+
 
         bottomSheetDialog1.setContentView(bottomSheetView);
         bottomSheetDialog1.show();
