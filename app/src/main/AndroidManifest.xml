@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MessList"
-            android:exported="true"></activity>
+<!--        <activity-->
+<!--            android:name=".MessList"-->
+<!--            android:exported="true"></activity>-->
         <activity
             android:name=".Menu"
             android:exported="true">
