@@ -29,6 +29,14 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/***
+ * Author : Rahul Shinde
+ *last edited By : Rahul Shinde
+ *Date : 15-08-2024
+ * Note :
+ */
+
 public class HomeScreen extends Activity implements View.OnClickListener {
 
     Spinner area_combo;
@@ -105,8 +113,6 @@ public class HomeScreen extends Activity implements View.OnClickListener {
 
 
 
-
-
         fetchMessCards();
 
         searchView = findViewById(R.id.search_mess);
@@ -152,6 +158,7 @@ public class HomeScreen extends Activity implements View.OnClickListener {
 
     private void fetchMessCards() {
 
+        //here dummy data added to check recycler working
         mess_list = new ArrayList<>();
 
         mess_list.add(new MessCardData("Annapurna Mess", "11 pm to 12pm", "30 seats", "Open", "4.0", R.drawable.dish1));
@@ -179,8 +186,6 @@ public class HomeScreen extends Activity implements View.OnClickListener {
         ll_Second = findViewById(R.id.contact_linear);
         ll_Third = findViewById(R.id.favourite_linear);
         ll_Fourth = findViewById(R.id.logout_linear);
-
-
 
 
         navigationBar.setOnClickListener(this);
