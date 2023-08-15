@@ -1,5 +1,6 @@
 package com.example.nearmess;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,13 +11,26 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+ 
 import android.view.WindowManager;
 import android.widget.ImageView;
+ 
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.nearmess.callbacks.GetAllDataFromDocumentCallBack;
+import com.example.nearmess.callbacks.GetAllDocumentsCallBack;
+import com.example.nearmess.callbacks.GetDataFromDocumentCallBack;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+ 
 import com.google.android.material.navigation.NavigationView;
+ 
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+ 
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +45,7 @@ import java.util.List;
 
 public class Menu extends Activity implements View.OnClickListener {
     RecyclerView bottomSheetComment;
+    private String ans = "";
 
     DrawerLayout drawerLayout;
     ImageView navigationBar;
@@ -54,17 +69,10 @@ public class Menu extends Activity implements View.OnClickListener {
                 showBottomSheetDialog();
             }
         });
-
-
-
-
-
-
     }
 
     public void showBottomSheetDialog()
     {
-
 
         final BottomSheetDialog bottomSheetDialog1 = new BottomSheetDialog(
                 Menu.this,R.style.BottomSheetDialogTheme
