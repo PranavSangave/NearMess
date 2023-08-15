@@ -53,21 +53,23 @@
 
             </RelativeLayout>
 
-            <androidx.cardview.widget.CardView
+<!--            <androidx.cardview.widget.CardView-->
 
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                app:cardCornerRadius="16dp"
-                android:layout_height="200dp"
+<!--                android:padding="10dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                app:cardCornerRadius="16dp"-->
+<!--                android:layout_height="200dp"-->
 
 
-                android:layout_marginTop="30dp">
+<!--                android:layout_marginTop="30dp">-->
 
 
 
 
             <LinearLayout
-                android:background="@color/white"
+                android:layout_marginTop="30dp"
+
+                android:background="@drawable/mass_name_and_detail_background"
 
                 android:padding="10dp"
                 android:layout_width="match_parent"
@@ -238,7 +240,7 @@
 
 
             </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--            </androidx.cardview.widget.CardView>-->
 
 
 

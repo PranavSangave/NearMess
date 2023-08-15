@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 
 /***
@@ -24,6 +26,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         setStatusBarColor("#2a7453");
+        addAnimation();
 
 
 
@@ -32,7 +35,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 // Intent is used to switch from one activity to another.
-                Intent i = new Intent(SplashScreen.this, Menu.class);
+                Intent i = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(i); // invoke the SecondActivity.
                 finish(); // the current activity will get finished.
             }
@@ -56,4 +59,16 @@ public class SplashScreen extends AppCompatActivity {
             window.setStatusBarColor(color);
         }
     }
+
+    public void addAnimation()
+    {
+
+        Animation scale = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animation1);
+        findViewById(R.id.outer_round).setAnimation(scale);
+
+
+
+    }
+
+
 }

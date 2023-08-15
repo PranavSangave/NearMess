@@ -41,6 +41,7 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+//        overridePendingTransition(R.anim.got_down_to_up, R.anim.got_down_to_up1);
 
         // To show bottom sheet Dialog
         CardView commentCard = findViewById(R.id.commentCard);
