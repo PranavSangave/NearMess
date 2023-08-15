@@ -50,48 +50,6 @@ public class Menu extends AppCompatActivity {
                 showBottomSheetDialog();
             }
         });
-
-
-        /** TODO: HERE PROBLEM IS WE CANNOT ACCESS DATA OUTSIDE THAT ON DATA RECEIVCED FUNCTION CALL */
-        /** TODO: WORK ON IT */
-        MyDatabase db = new MyDatabase(FirebaseFirestore.getInstance(), Menu.this);
-
-        // Assuming db is your Firestore database reference
-        db.getAllFromDocument(FirestoreKeys.MESS_OWNERS, "101", new GetAllDataFromDocumentCallBack() {
-            @Override
-            public void onDataReceived(DocumentSnapshot documentSnapshot) {
-                String ownerName = documentSnapshot.getString(FirestoreKeys.MESS_OWNER_NAME);
-            }
-        });
-
-        db.getItemFromDocument(FirestoreKeys.AREA, "Kondhwa", FirestoreKeys.MESS_ID, new GetDataFromDocumentCallBack() {
-            @Override
-            public void onDataReceived(Object data) {
-                if(data == null) {
-                    Toast.makeText(Menu.this, "Something Wents Wrong !", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    List<String> ans = (List<String>) data;
-                    Toast.makeText(Menu.this, ans+"", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        db.getAllDocumentsFromCollection(FirestoreKeys.AREA, new GetAllDocumentsCallBack() {
-            @Override
-            public void onDataReceived(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()) {
-                    String ids = "";
-                    for(QueryDocumentSnapshot document : task.getResult()) {
-                        ids = ids += document.getId();
-                    }
-                    Toast.makeText(Menu.this, ids, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
     }
 
     public void showBottomSheetDialog()
