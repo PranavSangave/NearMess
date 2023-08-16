@@ -199,35 +199,36 @@ public class HomeScreen extends Activity implements View.OnClickListener {
     }
 
 
+    private static final int ACCOUNT_VIEW_ID = R.id.account2;
+    private static final int SHARE_LINEAR_VIEW_ID = R.id.share_linear;
+    private static final int CONTACT_LINEAR_VIEW_ID = R.id.contact_linear;
+    private static final int FAVOURITE_LINEAR_VIEW_ID = R.id.favourite_linear;
+    private static final int LOGOUT_LINEAR_VIEW_ID = R.id.logout_linear;
+
+    // ...
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.account2:
-                drawerLayout.openDrawer(navigationView, true);
-                break;
-            case R.id.share_linear:
-                showToast("share");
-                drawerLayout.closeDrawer(navigationView, true);
-                break;
-            case R.id.contact_linear:
-                showToast("contact us");
-                drawerLayout.closeDrawer(navigationView, true);
-                break;
-            case R.id.favourite_linear:
-                showToast("favourite");
-                drawerLayout.closeDrawer(navigationView, true);
-                break;
-            case R.id.logout_linear:
-                showToast("logout");
-                drawerLayout.closeDrawer(navigationView, true);
-                break;
-            default:
-                showToast("Default");
-                drawerLayout.closeDrawer(navigationView, true);
-                //drawerLayout.openDrawer(navigationView, true);
-                break;
+        if (v.getId() == ACCOUNT_VIEW_ID) {
+            drawerLayout.openDrawer(navigationView, true);
+        } else if (v.getId() == SHARE_LINEAR_VIEW_ID) {
+            showToast("share");
+            drawerLayout.closeDrawer(navigationView, true);
+        } else if (v.getId() == CONTACT_LINEAR_VIEW_ID) {
+            showToast("contact us");
+            drawerLayout.closeDrawer(navigationView, true);
+        } else if (v.getId() == FAVOURITE_LINEAR_VIEW_ID) {
+            showToast("favourite");
+            drawerLayout.closeDrawer(navigationView, true);
+        } else if (v.getId() == LOGOUT_LINEAR_VIEW_ID) {
+            showToast("logout");
+            drawerLayout.closeDrawer(navigationView, true);
+        } else {
+            showToast("Default");
+            drawerLayout.closeDrawer(navigationView, true);
         }
     }
+
 
     private void showToast(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
