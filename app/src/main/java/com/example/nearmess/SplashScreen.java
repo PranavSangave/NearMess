@@ -60,6 +60,8 @@ public class SplashScreen extends AppCompatActivity {
         }
     }
 
+
+
     public void addAnimation()
     {
 
