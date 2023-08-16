@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
+    tools:context=".Menu"
+    tools:openDrawer="end">
 
-    tools:context=".Menu">
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:background="@color/button"
+        android:paddingTop="50dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_marginLeft="80dp">
+
+        <include
+            android:id="@+id/layout_side_menu"
+            layout="@layout/layout_side_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical">-->
 
 
     <ScrollView
@@ -17,23 +42,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="30dp"
             android:layout_marginTop="-20dp"
-            >
+            android:orientation="vertical"
+
+            android:padding="30dp">
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/back_button_arrow"
-                    >
+                    android:src="@drawable/back_button_arrow">
 
 
                 </ImageView>
@@ -42,10 +65,21 @@
 
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_gravity="end"
-                    android:src="@drawable/favorite_icon"
                     android:layout_alignParentEnd="true"
-                    >
+                    android:layout_marginRight="40dp"
+                    android:src="@drawable/favorite_icon">
+
+
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/nav_menu"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+
+                    android:layout_gravity="end"
+                    android:src="@drawable/ic_navigation_bar_white">
 
 
                 </ImageView>
@@ -53,262 +87,236 @@
 
             </RelativeLayout>
 
-<!--            <androidx.cardview.widget.CardView-->
+            <androidx.cardview.widget.CardView
 
-<!--                android:padding="10dp"-->
-<!--                android:layout_width="match_parent"-->
-<!--                app:cardCornerRadius="16dp"-->
-<!--                android:layout_height="200dp"-->
-
-
-<!--                android:layout_marginTop="30dp">-->
-
-
-
-
-            <LinearLayout
-                android:layout_marginTop="30dp"
-
-                android:background="@drawable/mass_name_and_detail_background"
-
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_marginTop="30dp"
+                android:padding="10dp"
 
-                android:orientation="horizontal"
 
-
-                >
+                app:cardCornerRadius="16dp">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="20dp"
+
+                    android:layout_height="200dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+
+                    android:padding="10dp"
+
 
                     >
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/testimg"
-                        >
-
-                    </de.hdodenhof.circleimageview.CircleImageView>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ashirwad Pure veg"
-                        android:layout_marginBottom="4dp"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
-                        >
-
-
-                    </TextView>
-
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="5dp"
+                        android:layout_weight="1.5"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="20dp"
+
                         >
 
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/testimg">
 
-                        <ImageView
+                        </de.hdodenhof.circleimageview.CircleImageView>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/access_time">
+                            android:layout_marginBottom="4dp"
+                            android:text="Ashirwad Pure veg"
+                            android:textSize="18dp"
+                            android:textStyle="bold">
 
-                        </ImageView>
+
+                        </TextView>
 
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="5dp"
-                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
 
-                            >
 
-                            <TextView
-                                android:padding="5dp"
+                            <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/access_time">
 
-                                android:text="8 AM to 11 PM">
+                            </ImageView>
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:orientation="vertical"
+
+                                >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+
+                                    android:text="8 AM to 11 PM">
+
+                                </TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+
+
+                                    android:text="7 PM to 11 PM">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/call_icon">
+
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+
+                                android:padding="5dp"
+                                android:text="7387579912">
 
                             </TextView>
-                            <TextView
-                                android:padding="5dp"
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/address_icon">
 
+                            </ImageView>
 
-                                android:text="7 PM to 11 PM">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+
+                                android:padding="5dp"
+                                android:text="Borsar Vaijapur Sambhajinagar">
 
                             </TextView>
 
                         </LinearLayout>
 
 
-
-
                     </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/call_icon">
-
-                        </ImageView>
-                        <TextView
-                            android:padding="5dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:layout_gravity="center_vertical"
-                            android:text="7387579912">
-
-                        </TextView>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/address_icon">
-
-                        </ImageView>
-                        <TextView
-                            android:padding="5dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:layout_gravity="center_vertical"
-                            android:text="Borsar Vaijapur Sambhajinagar">
-
-                        </TextView>
-
-                    </LinearLayout>
-
-
 
 
                 </LinearLayout>
-
-
-
-
-
-            </LinearLayout>
-<!--            </androidx.cardview.widget.CardView>-->
-
-
-
-
+            </androidx.cardview.widget.CardView>
 
 
             <LinearLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-
-
-
-
+                android:orientation="vertical">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-
-
-
-
-                <TextView
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="Today's Menu">
-
-                </TextView>
-
-                <TextView
-                    android:paddingBottom="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textStyle="bold"
-                    android:textSize="18dp"
-                    android:text="Lunch">
-                </TextView>
-<!--                <LinearLayout-->
-<!--                    android:paddingTop="10dp"-->
-<!--                    android:paddingBottom="10dp"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="200dp">-->
+                    android:orientation="vertical">
 
 
-<!--                <ScrollView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent">-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent">-->
+                        android:text="Today's Menu"
+                        android:textSize="20dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+
+                        android:text="Lunch"
+                        android:textSize="18dp"
+                        android:textStyle="bold"></TextView>
+                    <!--                <LinearLayout-->
+                    <!--                    android:paddingTop="10dp"-->
+                    <!--                    android:paddingBottom="10dp"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="200dp">-->
+
+
+                    <!--                <ScrollView-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="match_parent">-->
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent">-->
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:lineSpacingExtra="3dp"
                         android:fontFamily="@font/roboto"
+                        android:lineSpacingExtra="3dp"
 
 
                         android:text="1. Grilled Chicken Breast with Steamed Broccoli
@@ -324,46 +332,42 @@
 ">
 
                     </TextView>
-<!--                    </LinearLayout>-->
-<!--                </ScrollView>-->
-<!--                </LinearLayout>-->
+                    <!--                    </LinearLayout>-->
+                    <!--                </ScrollView>-->
+                    <!--                </LinearLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Charges"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-
-
-                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="Charges"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
 
 
-                </TextView>
+                        >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
 
-                    android:lineSpacingExtra="3dp"
-                    android:text="Full plate 70Rs\n monthly 1200Rs"
-                    >
+                    </TextView>
 
-                </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:lineSpacingExtra="3dp"
+                        android:text="Full plate 70Rs\n monthly 1200Rs">
+
+                    </TextView>
 
 
                 </LinearLayout>
 
 
-
-
-
                 <TextView
-                    android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:text="Rating"
                     android:textSize="18sp"
 
@@ -372,46 +376,50 @@
                 </TextView>
 
                 <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_marginRight="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginRight="5dp"
                         android:src="@drawable/star_icon">
 
                     </ImageView>
+
                     <ImageView
-                        android:layout_marginRight="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginRight="5dp"
                         android:src="@drawable/star_icon">
 
                     </ImageView>
+
                     <ImageView
-                        android:layout_marginRight="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginRight="5dp"
 
                         android:src="@drawable/star_icon">
 
                     </ImageView>
+
                     <ImageView
-                        android:layout_marginRight="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginRight="5dp"
                         android:src="@drawable/star_icon">
 
                     </ImageView>
+
                     <ImageView
-                        android:layout_marginRight="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginRight="5dp"
                         android:src="@drawable/star_icon">
 
                     </ImageView>
@@ -419,33 +427,28 @@
                 </LinearLayout>
 
 
-
-
-
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/commentCard"
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@color/black"
+                    android:padding="10dp"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
-                        android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
-                        android:orientation="vertical">
-
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18dp"
-                            android:text="Comment 2">
+                            android:text="Comment 2"
+                            android:textSize="18dp">
 
                         </TextView>
 
@@ -459,12 +462,13 @@
                                 android:src="@drawable/testimg">
 
                             </de.hdodenhof.circleimageview.CircleImageView>
+
                             <TextView
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:layout_marginStart="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:gravity="center"
                                 android:text="This mess is so good">
 
                             </TextView>
@@ -474,42 +478,18 @@
                     </LinearLayout>
 
 
-
                 </androidx.cardview.widget.CardView>
 
 
-
-
-
-                
-
             </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
 
 
         </LinearLayout>
 
 
-
-
-
-
-
-
     </ScrollView>
 
 
+    <!--    </LinearLayout>-->
 
-
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
