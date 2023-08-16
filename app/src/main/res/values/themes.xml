@@ -5,9 +5,10 @@
         <item name="colorPrimary">#2A7353</item>
         <item name="colorPrimaryVariant">#49A332</item>
         <item name="colorOnPrimary">#49A332</item>
+
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#49A332</item>
-        <item name="colorSecondaryVariant">#49A332</item>
+        <item name="colorSecondary">@color/button</item>
+        <item name="colorSecondaryVariant">@color/button</item>
         <item name="colorOnSecondary">@color/black</item>
 <!--        <item name="android:statusBarColor">#2A7353</item>-->
 
@@ -15,9 +16,6 @@
         <!-- Status bar color. -->
 <!--        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>-->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-
-
-
 
 
 
@@ -30,8 +28,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/commentBox1</item>
 
-
-
+        <item name="backgroundTint">@color/white</item>
 
 
     </style>

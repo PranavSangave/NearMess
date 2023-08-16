@@ -11,10 +11,10 @@ import android.view.WindowManager;
 
 
 /***
- * Author : Vasudev Raut
+ * Author : Arpita Waghmare
  *last edited By : Vasudev Raut
  *Date : 14-08-2023
- * Note :
+ * Note : Changed Intent
  */
 public class SplashScreen extends AppCompatActivity {
     private static final int SPLASH_SCREEN_TIME_OUT = 2000;
@@ -32,7 +32,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 // Intent is used to switch from one activity to another.
-                Intent i = new Intent(SplashScreen.this, Menu.class);
+                Intent i = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(i); // invoke the SecondActivity.
                 finish(); // the current activity will get finished.
             }
