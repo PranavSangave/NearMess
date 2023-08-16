@@ -4,10 +4,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="background_color">#1A1A1A</color>
+    <color name="background_color">#f2f2f2</color>
 
     <color name="textfieldCards">#333333</color>
-    <color name="button">#49A332</color>
+    <color name="button">#2A7353</color>
     <color name="commentBox1">#7F7F7F</color>
     <color name="commentBox2">#E6E4E4</color>
     <color name="commentBox3">#474444</color>
