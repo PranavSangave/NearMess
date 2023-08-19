@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.nearmess.callbacks.GetAllCommentsCallBack;
 import com.example.nearmess.callbacks.GetAllDataFromDocumentCallBack;
 import com.example.nearmess.callbacks.GetAllDocumentsCallBack;
 import com.example.nearmess.callbacks.GetDataFromDocumentCallBack;
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -120,7 +122,7 @@ public class MyDatabase {
     /** THIS METHOD IS USE TO CREATE NEW MESS_MENU DOCUMENT IN MESS_MENU_COLLECTION */
 
 
-    public void createMessMenu(String mess_email, int meal_type_constant, Map<String, String> charges,
+    public void createMessMenu(String mess_email, int meal_type_constant, List<String> charges,
                                List<String> menu, String specialMsg)
     {
         String mainDocPath = FirestoreKeys.MESS_MENU + "/" + mess_email;
@@ -129,12 +131,21 @@ public class MyDatabase {
         // Fetching today's date
         LocalDate date = LocalDate.now();
 
-
         Map<String, Object> mealMap = new HashMap<>();
+
+        // Map for comments
+        Map<String, String> comments = new HashMap<>(); // keep it empty  as initially we don't have comments
+        List<String> likes = new ArrayList<>();  // initially empty
+        List<String> dislikes = new ArrayList<>(); // initially empty
 
         mealMap.put(FirestoreKeys.CHARGES, charges);
         mealMap.put(FirestoreKeys.MENU_STRING, menu);
         mealMap.put(FirestoreKeys.SPECIAL_MSG, specialMsg);
+        mealMap.put(FirestoreKeys.COMMENTS, comments);
+        mealMap.put(FirestoreKeys.LIKES, likes);
+        mealMap.put(FirestoreKeys.DISLIKES, dislikes);
+
+
         DocumentReference dateDoc;
         if(meal_type_constant == FirestoreKeys.LUNCH)
         {
@@ -188,6 +199,68 @@ public class MyDatabase {
                     }
                 });
     }
+
+    /** THIS METHOD IS USE TO CREATE NEW COMMENT */
+    public void addComment(String mess_email, String date, int meal_type, String end_user_email, String comment)
+    {
+        String mealType;
+        if(meal_type == FirestoreKeys.LUNCH) mealType = FirestoreKeys.LUNCH_STR;
+        else if(meal_type == FirestoreKeys.DINNER) mealType = FirestoreKeys.DINNER_STR;
+        else return;
+
+        DocumentReference dref = storeRef.collection(FirestoreKeys.MESS_MENU).document(mess_email).collection(date)
+                .document(mealType);
+
+        dref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful())
+                {
+                   DocumentSnapshot ds = task.getResult();
+                   Map<String,String> mp = (Map<String,String>)ds.get(FirestoreKeys.COMMENTS);
+                   mp.put(end_user_email, comment);
+
+                   dref.update(FirestoreKeys.COMMENTS, mp).addOnSuccessListener(new OnSuccessListener<Void>() {
+                       @Override
+                       public void onSuccess(Void unused) {
+                           Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
+                       }
+                   }).addOnFailureListener(new OnFailureListener() {
+                       @Override
+                       public void onFailure(@NonNull Exception e) {
+                           Toast.makeText(context, "Error Occured " + e, Toast.LENGTH_SHORT).show();
+                       }
+                   });
+
+                }
+            }
+        });
+
+
+    }
+
+    /** THIS METHOD IS USE TO CREATE NEW COMMENT */
+    public void fetchComments(String mess_email, String date, int meal_type, GetAllCommentsCallBack callBack)
+    {
+        String mealType;
+        if(meal_type == FirestoreKeys.LUNCH) mealType = FirestoreKeys.LUNCH_STR;
+        else if(meal_type == FirestoreKeys.DINNER) mealType = FirestoreKeys.DINNER_STR;
+        else return;
+
+        DocumentReference dref = storeRef.collection(FirestoreKeys.MESS_MENU).document(mess_email).collection(date)
+                .document(mealType);
+
+        dref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful())
+                {
+                    callBack.onDataReceived(task);
+                }
+            }
+        });
+    }
+
 
     /** (GETTER METHODS) */
 
@@ -246,7 +319,7 @@ public class MyDatabase {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                callBack.onDataReceived(null);
+                Toast.makeText(context, "Error :" + e, Toast.LENGTH_SHORT).show();
             }
         });
     }

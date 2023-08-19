@@ -98,8 +98,6 @@ public class HomeScreen extends Activity implements View.OnClickListener {
                 if (textView != null) {
                     textView.setTextColor(getResources().getColor(android.R.color.black));
                 }
-
-
             }
 
             @Override
