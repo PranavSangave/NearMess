@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -18,11 +22,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SignUp extends AppCompatActivity {
     FirebaseAuth auth;
@@ -30,7 +39,12 @@ public class SignUp extends AppCompatActivity {
     ProgressDialog progressDialog;
     Button signInButton;
 
-    Button btnCreate;
+    Button btnCreate,verify_email;
+    final String sharedPreferencesFileTitle = "NeerMessApplication";
+    Users users;
+
+    String verify_status="";
+    TextInputEditText user_name,user_password,user_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +56,38 @@ public class SignUp extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),Menu.class);
-                startActivity(i);
+//                Intent i = new Intent(getApplicationContext(),Menu.class);
+//                startActivity(i);
+                checkAgrement();
+            }
+
+        });
+
+        TextView already_account = findViewById(R.id.already_account);
+        already_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(SignUp.this,MainActivity.class);
+                startActivity(intent);
             }
         });
+
+//        verify_email.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//                checkAgrement();
+//
+//
+//            }
+//        });
+
+
+
+
+
     }
 
     public void signUP(){
@@ -67,7 +109,22 @@ public class SignUp extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+
+                CheckBox checkAgreement ;
+                checkAgreement = findViewById(R.id.user_agreement);
+
+                if(checkAgreement.isChecked())
+                {
+                    signIn();
+                }
+                else {
+                    Toast.makeText(SignUp.this,"Please checked I agree checkbox",Toast.LENGTH_SHORT).show();
+
+                }
+
+
+
+
             }
         });
 
@@ -115,15 +172,17 @@ public class SignUp extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             FirebaseUser user = auth.getCurrentUser();
-                            Users users = new Users();
+                            users = new Users();
                             users.setUserId(user.getUid());
                             users.setName(user.getDisplayName());
                             users.setProfile(user.getPhotoUrl().toString());
-                            Toast.makeText(SignUp.this,"Success"+user.getDisplayName(),Toast.LENGTH_LONG).show();
+                            users.setEmail(user.getEmail());
+                            verify_status = "Success";
+                            Toast.makeText(SignUp.this,"Verify Success",Toast.LENGTH_LONG).show();
 
 
-                            Intent intent= new Intent(SignUp.this,Menu.class);
-                            startActivity(intent);
+//                            Intent intent= new Intent(SignUp.this,Menu.class);
+//                            startActivity(intent);
 
                         }
                         else {
@@ -133,4 +192,134 @@ public class SignUp extends AppCompatActivity {
                 });
 
     }
+
+
+
+    public void checkAgrement()
+    {
+
+        CheckBox checkAgreement ;
+        checkAgreement = findViewById(R.id.user_agreement);
+
+        if(checkAgreement.isChecked())
+        {
+            if(verify_status.equals("Success"))
+            {
+                registeration();
+            }
+            else {
+                Toast.makeText(this, "Please Vefify email first", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+        else
+        {
+            Toast.makeText(SignUp.this,"Please checked I agree checkbox",Toast.LENGTH_SHORT).show();
+
+        }
+
+
+
+
+    }
+
+    public void registeration()
+    {
+
+
+        user_name = findViewById(R.id.user_name);
+        user_email= findViewById(R.id.user_email);
+        user_password = findViewById(R.id.user_password);
+        
+
+
+
+       
+
+
+        String userName,userEmail,userPassword;
+
+        userName = user_name.getText().toString();
+        userEmail = user_email.getText().toString();
+        userPassword = user_password.getText().toString();
+        
+
+
+
+
+       
+
+
+
+       
+
+
+        checkValidation(userName,userEmail,userPassword);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    private void checkValidation(String userName, String userEmail, String userPassword) {
+
+        if(!userName.equals("")) {
+            if(!userEmail.equals("")) {
+                if(!userPassword.equals("")) {
+                    informationStoreToDatabase(userName,userEmail,userPassword);
+
+                }
+                else {
+                    user_password.setError("");
+                    Toast.makeText(this, "Pleas Enter your password", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            else {
+                user_email.setError("");
+                Toast.makeText(this, "Pleas Enter your email", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+        else {
+            user_name.setError("");
+            Toast.makeText(this, "Pleas Enter your name", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void informationStoreToDatabase(String userName, String userEmail, String userPassword) {
+
+        MyDatabase myDatabase = new MyDatabase(FirebaseFirestore.getInstance(),this);
+//        progressDialog.dismiss();
+        //now store all record here into mess owner database
+
+        List<String> ls  = new ArrayList<>();
+        SharedPreferences sharedPreferences = getSharedPreferences(sharedPreferencesFileTitle, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user_email", userEmail);
+        editor.putString("user_pass", userPassword);
+        editor.apply();
+
+        myDatabase.createEndUser(users.getEmail(),userName,userPassword,ls,"101");
+        Toast.makeText(this, "User Created Succesfully..", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(SignUp.this,HomeScreen.class);
+        startActivity(intent);
+        finish();
+
+
+
+    }
+
+
 }

@@ -196,7 +196,7 @@ public class HomeScreen extends Activity implements View.OnClickListener {
     }
 
 
-    // Define constants for view IDs
+
     private static final int ACCOUNT_VIEW_ID = R.id.account2;
     private static final int SHARE_LINEAR_VIEW_ID = R.id.share_linear;
     private static final int CONTACT_LINEAR_VIEW_ID = R.id.contact_linear;
@@ -227,8 +227,11 @@ public class HomeScreen extends Activity implements View.OnClickListener {
         }
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+
+    private void showToast(String message){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

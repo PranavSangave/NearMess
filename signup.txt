@@ -36,84 +36,84 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:elevation="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/edit_comment_edit_text_background"
-                android:layout_marginBottom="30dp"
-                app:hintEnabled="false"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/user_email"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="@string/email"
-                    android:padding="10dp"
-                    android:background="@drawable/edittext_background"
-                    android:textStyle="normal"
-
+                    android:background="@color/white"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="1.2"
+                    android:shadowDy="1.2"
+                    android:shadowRadius="1.5"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <com.google.android.material.textfield.TextInputLayout
-                android:elevation="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/edit_comment_edit_text_background"
-                android:layout_marginBottom="30dp"
-                app:hintEnabled="false"
+                android:layout_marginTop="16dp"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/user_name"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/name"
-                    android:padding="10dp"
-                    android:background="@drawable/edittext_background"
-                    android:textStyle="normal"
-
-
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:elevation="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/edit_comment_edit_text_background"
-                android:layout_marginBottom="30dp"
-                app:hintEnabled="false"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/user_password"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:hint="@string/password"
-                    android:padding="10dp"
-                    android:background="@drawable/edittext_background"
-                    android:textStyle="normal"
 
+                    android:background="@drawable/edit_comment_edit_text_background"
+                    android:layout_alignParentBottom="true"
+                    android:selectAllOnFocus="true"
+                    android:hint="Add Comment"
 
-                    />
+                    android:paddingStart="20dp"
+                    android:textColor="@color/black"
+                    android:layout_height="50dp">
+
+                </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_marginTop="-16dp"
                 >
 
                 <CheckBox
-                    android:id="@+id/user_agreement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -135,32 +135,28 @@
                 android:orientation="vertical"
                 android:padding="32dp"
                 android:layout_marginTop="-24dp">
-                <Button
-                    android:id="@+id/signinWithGoogle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Verify Email"
-                    app:icon="@drawable/google"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="and"
-                    android:layout_gravity="center"/>
 
                 <Button
-
                     android:id="@+id/btnCreate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/create"
                     />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/or"
+                    android:layout_gravity="center"/>
 
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/continue_google"
+                    app:icon="@drawable/google"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
 
-
+                    />
 
             </LinearLayout>
 
@@ -178,7 +174,6 @@
                     android:text="@string/already_member" />
 
                 <TextView
-                    android:id="@+id/already_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/login"
