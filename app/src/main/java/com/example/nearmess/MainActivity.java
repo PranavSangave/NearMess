@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         linksignup = findViewById(R.id.linksignup);
         signInWithGoogle();
-        checkInSharedPreferences();
+//        checkInSharedPreferences();
 //        logInVefication();
 
         linksignup.setOnClickListener(new View.OnClickListener() {
@@ -398,10 +398,10 @@ public class MainActivity extends AppCompatActivity {
                 String user_email = documentSnapshot.getId();
                 String userPass = documentSnapshot.getString(FirestoreKeys.END_USER_PASS);
 
-                if(user_email!=null)
+                if(userPass!=null)
                 {
 
-                    if(userPass.equals(userPassword))
+                    if(userPass!=null && userPass.equals(userPassword))
                     {
 
                         SharedPreferences sharedPreferences = getSharedPreferences(sharedPreferencesFileTitle, MODE_PRIVATE);
@@ -458,9 +458,10 @@ public class MainActivity extends AppCompatActivity {
 
 //                String ownerEmail = documentSnapshot.getString(FirestoreKeys.END_?USER_EMAIL);
                 String user_email = documentSnapshot.getId();
-//                Toast.makeText(MainActivity.this, ""+user_email, Toast.LENGTH_SHORT).show();
+                String name = documentSnapshot.getString(FirestoreKeys.END_USER_PASS);
+//                Toast.makeText(MainActivity.this, name+" raut"+user_email, Toast.LENGTH_SHORT).show();
 
-                if(user_email!=null)
+                if(name!=null)
                 {
 //                    Toast.makeText(MainActivity.this,"Already",Toast.LENGTH_SHORT).show();
                     SharedPreferences sharedPreferences = getSharedPreferences(sharedPreferencesFileTitle, MODE_PRIVATE);
