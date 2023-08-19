@@ -48,6 +48,7 @@ public class FirestoreKeys {
     public final static String MESS_STATUS = "MESS_STATUS";
     public final static String STREAKS = "STREAKS";
 
+
     // END_USER_KEYS
     public final static String END_USER_EMAIL = "END_USER_EMAIL";
     public final static String END_USER_NAME = "END_USER_NAME";
@@ -60,8 +61,8 @@ public class FirestoreKeys {
     public final static String WEEKLY = "WEEKLY";
     public final static String MENU_STRING = "MENU_STRING";
     public final static String MEAL_TYPE = "MEAL_TYPE";
-    public final static String LUNCH = "LUNCH";
-    public final static String DINNER = "DINNER";
+    public final static String LUNCH_STR = "LUNCH";
+    public final static String DINNER_STR = "DINNER";
     public final static String COMMENTS = "COMMENTS";
     public final static String LIKES = "LIKES";
     public final static String DISLIKES = "DISLIKES";
@@ -76,6 +77,8 @@ public class FirestoreKeys {
     public static final String THURSDAY = "THURSDAY";
     public static final String FRIDAY = "FRIDAY";
     public static final String SATURDAY = "SATURDAY";
+    public final static int LUNCH = 101;
+    public final static int DINNER = 102;
 
     // LOCATION_KEYS
     public static final String LOCATION = "LOCATION";
