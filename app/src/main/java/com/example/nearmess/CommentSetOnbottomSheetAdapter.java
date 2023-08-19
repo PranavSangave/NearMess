@@ -28,9 +28,6 @@ public class CommentSetOnbottomSheetAdapter extends RecyclerView.Adapter<Comment
     public CommentSetOnbottomSheetAdapter(Context context, ArrayList<CommentSetOnBottomSheetModel> comment_list) {
         this.context = context;
         this.comment_list = comment_list;
-//        Toast.makeText(context,"Vasudev"+comment_list.size(),Toast.LENGTH_LONG).show();
-
-
     }
 
     @NonNull
@@ -38,7 +35,6 @@ public class CommentSetOnbottomSheetAdapter extends RecyclerView.Adapter<Comment
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.comment_recycler_card,parent,false);
         MyHolder myHolder1 = new MyHolder(view);
-//        Toast.makeText(context,"Vasudev",Toast.LENGTH_LONG).show();
 
         return myHolder1;
     }
@@ -47,28 +43,26 @@ public class CommentSetOnbottomSheetAdapter extends RecyclerView.Adapter<Comment
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
 
         holder.user_name.setText(comment_list.get(position).getUser_name());
+        holder.time.setText(comment_list.get(position).getComment_time());
+        holder.comment_txt.setText(comment_list.get(position).getComment());
 
     }
 
     @Override
     public int getItemCount() {
-//        Toast.makeText(context,"Vasudev"+comment_list.size(),Toast.LENGTH_LONG).show();
         return comment_list.size();
     }
 
-
-
     public class MyHolder extends RecyclerView.ViewHolder {
 
-
-
-        TextView user_name;
+        TextView user_name, time, comment_txt;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             user_name = itemView.findViewById(R.id.user_name);
-
+            time = itemView.findViewById(R.id.comment_time);
+            comment_txt = itemView.findViewById(R.id.comment_text);
 
         }
     }

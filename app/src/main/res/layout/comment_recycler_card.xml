@@ -21,7 +21,7 @@
                 android:layout_height="30dp"
 
                 android:layout_marginEnd="10dp"
-                android:src="@drawable/testimg"/>
+                android:src="@drawable/dummy_user"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,10 +40,10 @@
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
                 android:maxLines="4"
                 android:layout_weight="1"
-                android:text="vasudev ">
+                android:text="vasudev "
+                android:textColor="@color/commentBox1">
 
             </TextView>
 
@@ -56,25 +56,26 @@
                  android:layout_height="wrap_content">
 
                  <TextView
+                     android:id="@+id/comment_time"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-
-
                      android:text="12.03 PM">
 
 
                  </TextView>
-                 <ImageView
-                     android:layout_marginStart="5dp"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:src="@drawable/flag_icon"/>
+<!--                 <ImageView-->
+<!--                     android:layout_marginStart="5dp"-->
+<!--                     android:layout_width="wrap_content"-->
+<!--                     android:layout_height="wrap_content"-->
+<!--                     android:src="@drawable/flag_icon"/>-->
              </LinearLayout>
 
 
             </LinearLayout>
 
                 <TextView
+                    android:id="@+id/comment_text"
+                    android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="This is very good food like it"
@@ -90,45 +91,46 @@
         </LinearLayout>
         
         
-        <LinearLayout
-            android:layout_gravity="end"
-            android:gravity="end"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+<!--        <LinearLayout-->
+<!--            android:layout_gravity="end"-->
+<!--            android:gravity="end"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:src="@drawable/happy_emoji_icon"
-                android:layout_height="wrap_content">
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:src="@drawable/happy_emoji_icon"-->
+<!--                android:layout_height="wrap_content">-->
 
-            </ImageView>
-            <TextView
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_width="wrap_content"
-                android:text="3"
-                android:layout_height="wrap_content">
+<!--            </ImageView>-->
+<!--            <TextView-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:layout_marginEnd="5dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:text="3"-->
+<!--                android:layout_height="wrap_content">-->
 
-            </TextView>
+<!--            </TextView>-->
 
-            <ImageView
-                android:src="@drawable/sad_emoji_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+<!--            <ImageView-->
+<!--                android:src="@drawable/sad_emoji_icon"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
 
-            </ImageView>
-            <TextView
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:text="3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+<!--            </ImageView>-->
+<!--            <TextView-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:layout_marginEnd="5dp"-->
+<!--                android:text="3"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
 
-            </TextView>
+<!--            </TextView>-->
 
 
 
-        </LinearLayout>
+<!--        THIS IS NEW VERSION FEATURE -->
+<!--        </LinearLayout>-->
 
 
     </LinearLayout>

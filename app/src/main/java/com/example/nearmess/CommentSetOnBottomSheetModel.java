@@ -14,13 +14,13 @@ public class CommentSetOnBottomSheetModel {
     String user_name,comment,comment_time,emotion_happy,emotion_sad;
     String profile_pic;
 
-    public CommentSetOnBottomSheetModel(String user_name, String comment, String comment_time, String emotion_happy, String emotion_sad, String profile_pic) {
+    public CommentSetOnBottomSheetModel(String user_name, String comment, String comment_time) {
         this.user_name = user_name;
         this.comment = comment;
         this.comment_time = comment_time;
-        this.emotion_happy = emotion_happy;
-        this.emotion_sad = emotion_sad;
-        this.profile_pic = profile_pic;
+//        this.emotion_happy = emotion_happy;
+//        this.emotion_sad = emotion_sad;
+//        this.profile_pic = profile_pic;
     }
 
     public String getUser_name() {

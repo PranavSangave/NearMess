@@ -1,5 +1,7 @@
 package com.example.nearmess;
 
+import static com.example.nearmess.FirestoreKeys.DINNER;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -8,11 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
  
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
  
 import android.widget.LinearLayout;
@@ -50,6 +54,8 @@ public class Menu extends Activity implements View.OnClickListener {
     RecyclerView bottomSheetComment;
     private String ans = "";
 
+    SharedPreferences sharedPreferences ;
+
     DrawerLayout drawerLayout;
     ImageView navigationBar;
     LinearLayout ll_First,ll_Second,ll_Third,ll_Fourth;
@@ -64,6 +70,8 @@ public class Menu extends Activity implements View.OnClickListener {
 
 
         onSetNavigationDrawerEvents();
+
+        sharedPreferences = getSharedPreferences("NeerMessApplication", MODE_PRIVATE);
 
         // To show bottom sheet Dialog
         CardView commentCard = findViewById(R.id.commentCard);
@@ -90,38 +98,73 @@ public class Menu extends Activity implements View.OnClickListener {
                         (LinearLayout)findViewById(R.id.bottomsheetcontainer)
                 );
 
+            /** Add Comment Code **/
+            EditText commentEditText = bottomSheetView.findViewById(R.id.add_comment_edit_txt);
+            ImageView sendBtn = bottomSheetView.findViewById(R.id.sendBtn);
+            MyDatabase db = new MyDatabase(FirebaseFirestore.getInstance(), Menu.this);
+
+            sendBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    /** TODO: ONCE YOU BIND ALL OTHER DATA WITH DATA COMMING FROM MESS, THEN PLEASE UPDATE FOLLOWING VALUES */
+                    String comment = commentEditText.getText().toString();
+                    LocalDate date = LocalDate.now();
+
+                    String end_user_email =  sharedPreferences.getString("user_email", "NA");
+                    if(!end_user_email.equals("NA"))
+                        db.addComment("abc@gmail.com", date+"", FirestoreKeys.LUNCH, end_user_email, comment);
+
+                    commentEditText.setText("");
+                }
+            });
+
+            /** Displau Comments Code **/
+
             RecyclerView bottomSheetComment  = bottomSheetView.findViewById(R.id.commentRecyclerView);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             layoutManager.setOrientation(RecyclerView.VERTICAL);
             bottomSheetComment.setLayoutManager(layoutManager);
 
-            ArrayList<CommentSetOnBottomSheetModel> comment_list = new ArrayList<CommentSetOnBottomSheetModel>();
+            ArrayList<CommentSetOnBottomSheetModel> comment_list = new ArrayList<>();
 
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
+            db.fetchComments("abc@gmail.com", "2023-08-19", FirestoreKeys.LUNCH, new GetAllCommentsCallBack() {
+                @Override
+                public void onDataReceived(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful())
+                    {
+                        DocumentSnapshot docSnap = task.getResult();
+                        Map<String, Object> comments = (Map<String, Object>) docSnap.get(FirestoreKeys.COMMENTS);
 
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
-            comment_list.add(new CommentSetOnBottomSheetModel("Vasudev Raut","Hare krushnaaa","eeee","eeeee","eeee","eeee"));
+                        // Traverse the HashMap using an enhanced for loop
+                        for (Map.Entry<String, Object> entry : comments.entrySet()) {
+                            String key = entry.getKey();
 
+                            // Find the index of the "@" character
+                            int atIndex = key.indexOf("@");
 
-        CommentSetOnbottomSheetAdapter comment_adapter = new CommentSetOnbottomSheetAdapter(Menu.this, comment_list);
+                            if (atIndex != -1) { // Check if "@" was found
+                                // Remove the "@" character and everything after it
+                                key = key.substring(0, atIndex);
 
-            bottomSheetComment.setAdapter(comment_adapter);
-            comment_adapter.notifyDataSetChanged();
+                            }
 
+                            ArrayList<String> commentTimeLs = (ArrayList<String>) entry.getValue();
+                            comment_list.add(new CommentSetOnBottomSheetModel(key, commentTimeLs.get(0), commentTimeLs.get(1)));
 
+                        }
+                        CommentSetOnbottomSheetAdapter comment_adapter = new CommentSetOnbottomSheetAdapter(Menu.this, comment_list);
+                        comment_adapter.notifyDataSetChanged();
+                        bottomSheetComment.setAdapter(comment_adapter);
+
+                    }
+                }
+            });
 
 
 
         bottomSheetDialog1.setContentView(bottomSheetView);
         bottomSheetDialog1.show();
-
     }
 
 

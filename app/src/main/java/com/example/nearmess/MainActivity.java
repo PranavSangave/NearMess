@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         linksignup = findViewById(R.id.linksignup);
         signInWithGoogle();
-//        checkInSharedPreferences();
+        checkInSharedPreferences();
 //        logInVefication();
 
         linksignup.setOnClickListener(new View.OnClickListener() {

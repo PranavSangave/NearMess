@@ -29,10 +29,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class MyDatabase {
@@ -134,7 +137,7 @@ public class MyDatabase {
         Map<String, Object> mealMap = new HashMap<>();
 
         // Map for comments
-        Map<String, String> comments = new HashMap<>(); // keep it empty  as initially we don't have comments
+        Map<String, Object> comments = new HashMap<>(); // keep it empty  as initially we don't have comments
         List<String> likes = new ArrayList<>();  // initially empty
         List<String> dislikes = new ArrayList<>(); // initially empty
 
@@ -208,6 +211,17 @@ public class MyDatabase {
         else if(meal_type == FirestoreKeys.DINNER) mealType = FirestoreKeys.DINNER_STR;
         else return;
 
+        // FETCHING TIME IN HH:MM FORMAT
+        // Get the current time
+        long currentTimeMillis = System.currentTimeMillis();
+        Date currentTime = new Date(currentTimeMillis);
+
+        // Create a SimpleDateFormat with the desired format
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+
+        // Format the current time
+        String formattedTime = sdf.format(currentTime);
+
         DocumentReference dref = storeRef.collection(FirestoreKeys.MESS_MENU).document(mess_email).collection(date)
                 .document(mealType);
 
@@ -217,8 +231,11 @@ public class MyDatabase {
                 if(task.isSuccessful())
                 {
                    DocumentSnapshot ds = task.getResult();
-                   Map<String,String> mp = (Map<String,String>)ds.get(FirestoreKeys.COMMENTS);
-                   mp.put(end_user_email, comment);
+                   Map<String,Object> mp = (Map<String,Object>)ds.get(FirestoreKeys.COMMENTS);
+                   List<String> commentLs = new ArrayList<>(); // 0th index -> comment | 1st index -> time
+                   commentLs.add(comment);
+                   commentLs.add(formattedTime);
+                   mp.put(end_user_email, commentLs);
 
                    dref.update(FirestoreKeys.COMMENTS, mp).addOnSuccessListener(new OnSuccessListener<Void>() {
                        @Override
