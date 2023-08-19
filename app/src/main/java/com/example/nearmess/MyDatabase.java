@@ -2,7 +2,7 @@
  *  AUTHOR : PRANAV SANGAVE
  *  CREATION DATE : 15/08/2023
  *  LAST EDITED BY : PRANAV SANGAVE
- *  LAST MODIFIED DATE : 15/08/2023
+ *  LAST MODIFIED DATE : 19/08/2023
  *
  *  NOTE: PLEASE DON't MODIFY THIS FILE UNLESS AND UNTIL YOU WANT TO CHANGE DATABASE FUNCTIONS
  * **/
@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import com.example.nearmess.callbacks.GetAllDataFromDocumentCallBack;
 import com.example.nearmess.callbacks.GetAllDocumentsCallBack;
 import com.example.nearmess.callbacks.GetDataFromDocumentCallBack;
+import com.example.nearmess.callbacks.GetMealFromDate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,6 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,19 +49,19 @@ public class MyDatabase {
 
     /** THIS METHOD IS USE TO CREATE NEW MESS DOCUMENT IN MESS_OWNER_COLLECTION (SETTER)*/
     public void createMessOwner(String mess_id, String email,
-                                   String password, String owner_nm,
-                                   String mess_nm, String typed_addr,
-                                   String map_link, String mess_phone,
-                                   String seating_capacity, String service1,
-                                   String service2, String menu_type,
-                                   String morning_start_time, String morning_end_time,
-                                   String evening_start_time, String evening_end_time, String is_weekly)
+                                String password, String owner_nm,
+                                String mess_nm, String typed_addr,
+                                String map_link, String mess_phone,
+                                String seating_capacity, String service1,
+                                String service2, String menu_type,
+                                String morning_start_time, String morning_end_time,
+                                String evening_start_time, String evening_end_time, String is_weekly)
     {
 
-        docRef = storeRef.document(FirestoreKeys.MESS_OWNERS+"/"+mess_id);
+        docRef = storeRef.document(FirestoreKeys.MESS_OWNERS+"/"+email);
 
         Map<String, Object> messOwnerDetails = new HashMap<>();
-        messOwnerDetails.put(FirestoreKeys.OWNER_EMAIL, email);
+        messOwnerDetails.put(FirestoreKeys.MESS_ID, mess_id);
         messOwnerDetails.put(FirestoreKeys.OWNER_PASS, password);
         messOwnerDetails.put(FirestoreKeys.MESS_OWNER_NAME, owner_nm);
         messOwnerDetails.put(FirestoreKeys.MESS_NAME, mess_nm);
@@ -116,41 +118,53 @@ public class MyDatabase {
     }
 
     /** THIS METHOD IS USE TO CREATE NEW MESS_MENU DOCUMENT IN MESS_MENU_COLLECTION */
-    public void createMessMenu(String messId, String menuString, String mealType,
-                               Map<String, String> comments, Map<String, Boolean> likes,
-                               Map<String, Boolean> dislikes, String specialMsg,
-                               Map<String, Integer> charges)
+
+
+    public void createMessMenu(String mess_email, int meal_type_constant, Map<String, String> charges,
+                               List<String> menu, String specialMsg)
     {
-        String documentPath = FirestoreKeys.MESS_MENU + "/" + FirestoreKeys.DAILY;
+        String mainDocPath = FirestoreKeys.MESS_MENU + "/" + mess_email;
+        DocumentReference mainDoc = storeRef.document(mainDocPath);
 
-        Map<String,Object> dailyType = new HashMap<>();
-        Map<String, Object> weeklyType = new HashMap<>();
+        // Fetching today's date
+        LocalDate date = LocalDate.now();
 
-        Map<String, Object> menuData = new HashMap<>();
-        menuData.put(FirestoreKeys.MENU_STRING, menuString);
-        menuData.put(FirestoreKeys.MEAL_TYPE, mealType);
-        menuData.put(FirestoreKeys.COMMENTS, comments);
-        menuData.put(FirestoreKeys.LIKES, likes);
-        menuData.put(FirestoreKeys.DISLIKES, dislikes);
-        menuData.put(FirestoreKeys.SPECIAL_MSG, specialMsg);
-        menuData.put(FirestoreKeys.CHARGES, charges);
 
-        dailyType.put(messId, menuData);
+        Map<String, Object> mealMap = new HashMap<>();
 
-        storeRef.document(documentPath).set(dailyType)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Log.d("FIRESTORE", "MESS_MENU_CREATED");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("FIRESTORE", "MESS_MENU_CREATION_ERROR: " + e);
-                    }
-                });
+        mealMap.put(FirestoreKeys.CHARGES, charges);
+        mealMap.put(FirestoreKeys.MENU_STRING, menu);
+        mealMap.put(FirestoreKeys.SPECIAL_MSG, specialMsg);
+        DocumentReference dateDoc;
+        if(meal_type_constant == FirestoreKeys.LUNCH)
+        {
+            dateDoc = mainDoc.collection(date+"").document(FirestoreKeys.LUNCH_STR);
+        }
+        else if(meal_type_constant == FirestoreKeys.DINNER)
+        {
+            dateDoc = mainDoc.collection(date+"").document(FirestoreKeys.DINNER_STR);
+        }
+        else return;
+
+
+        dateDoc.set(mealMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, "Error" + e, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
+
+
+
 
     /** THIS METHOD IS USE TO CREATE NEW MESS_MENU DOCUMENT IN MESS_MENU_COLLECTION */
     public void createLocations(String location, List<String> mess_ids)
@@ -237,6 +251,7 @@ public class MyDatabase {
         });
     }
 
+
     /** THIS METHOD GIVES ALL ITEMS FROM SPECIFIED COLLECTION AND DOCUMENT */
     /** SAMPLE FUNCTION CALLL
      * =========================
@@ -247,6 +262,7 @@ public class MyDatabase {
      *                     String ids = "";
      *                     for(QueryDocumentSnapshot document : task.getResult()) {
      *                         ids = ids += document.getId();
+     *                         String name = document.getString("END_USER_NAME);
      *                     }
      *                     Toast.makeText(Menu.this, ids, Toast.LENGTH_SHORT).show();
      *                 }
@@ -268,5 +284,40 @@ public class MyDatabase {
                         callBack.onDataReceived(null);
                     }
                 });
+    }
+
+    /** THIS METHOD GIVES ALL ITEMS FROM SPECIFIED COLLECTION AND DOCUMENT */
+    /** SAMPLE FUNCTION CALLL
+     * =========================
+     *      db.getMessMenu("pranavsangave2003@gmail.com", date + "", FirestoreKeys.DINNER_STR, new GetMealFromDate() {
+     *             @Override
+     *             public void onDataReceived(@NonNull Task<DocumentSnapshot> task) {
+     *                 if(task.isSuccessful())
+     *                 {
+     *                     DocumentSnapshot doc = task.getResult();
+     *                     String msg = doc.getString(FirestoreKeys.SPECIAL_MSG);
+     *                     Toast.makeText(HomeScreen.this, msg, Toast.LENGTH_SHORT).show();
+     *                 }
+     *                 else
+     *                     Toast.makeText(HomeScreen.this, "Error", Toast.LENGTH_SHORT).show();
+     *             }
+     *         });
+     */
+    public void getMessMenu(String mess_email, String menu_date, String meal_type, GetMealFromDate callback)
+    {
+        DocumentReference dref = storeRef.collection(FirestoreKeys.MESS_MENU).document(mess_email)
+                .collection(menu_date).document(meal_type);
+
+        dref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                callback.onDataReceived(task);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
