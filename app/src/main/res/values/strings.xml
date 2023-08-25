@@ -85,7 +85,7 @@
     <string name="streak_score">Your Streak Score</string>
     <string name="know_more_about_streaks">Know more about streaks</string>
 
-<!--    Shared Preferences -->
+    <!--    Shared Preferences -->
     <string name="sharedPreferences">NeerMessApplication</string>
 
 </resources>
