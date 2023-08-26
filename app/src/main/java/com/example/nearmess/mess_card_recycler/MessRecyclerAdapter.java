@@ -77,8 +77,8 @@ public class MessRecyclerAdapter extends RecyclerView.Adapter<MessRecyclerAdapte
 
         holder.status.setText(temp.getMess_status());
 
-        Boolean isExpandable = dataholder2.get(position).getExpandable();
-        holder.expand.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
+//        Boolean isExpandable = dataholder2.get(position).getExpandable();
+//        holder.expand.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
 
         holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,30 +87,30 @@ public class MessRecyclerAdapter extends RecyclerView.Adapter<MessRecyclerAdapte
             }
         });
 
-        holder.l1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                messInfoActivity();
-            }
-        });
-        holder.l2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                messInfoActivity();
-            }
-        });
-        holder.l3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                messInfoActivity();
-            }
-        });
-        holder.l4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                messInfoActivity();
-            }
-        });
+//        holder.l1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                messInfoActivity();
+//            }
+//        });
+//        holder.l2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                messInfoActivity();
+//            }
+//        });
+//        holder.l3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                messInfoActivity();
+//            }
+//        });
+//        holder.l4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                messInfoActivity();
+//            }
+//        });
         holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,22 +161,22 @@ public class MessRecyclerAdapter extends RecyclerView.Adapter<MessRecyclerAdapte
             mess_img = itemView.findViewById(R.id.dish_img);
             status = itemView.findViewById(R.id.mess_status);
 
-            l1 = itemView.findViewById(R.id.status_linear);
-            l2 = itemView.findViewById(R.id.seating_linear);
-            l3 = itemView.findViewById(R.id.timing_linear);
-            l4 = itemView.findViewById(R.id.rating_linear);
+//            l1 = itemView.findViewById(R.id.status_linear);
+//            l2 = itemView.findViewById(R.id.seating_linear);
+//            l3 = itemView.findViewById(R.id.timing_linear);
+//            l4 = itemView.findViewById(R.id.rating_linear);
+//
+//            drop = itemView.findViewById(R.id.drop_menu);
+//            expand = itemView.findViewById(R.id.expand);
 
-            drop = itemView.findViewById(R.id.drop_menu);
-            expand = itemView.findViewById(R.id.expand);
-
-            drop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    MessCardData dataLead_backLog = dataholder2.get(getAdapterPosition());
-                    dataLead_backLog.setExpandable(!dataLead_backLog.getExpandable());
-                    notifyItemChanged(getAdapterPosition());
-                }
-            });
+//            drop.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    MessCardData dataLead_backLog = dataholder2.get(getAdapterPosition());
+//                    dataLead_backLog.setExpandable(!dataLead_backLog.getExpandable());
+//                    notifyItemChanged(getAdapterPosition());
+//                }
+//            });
 
 
 
